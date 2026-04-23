@@ -46,13 +46,13 @@ export function InventoryPage({ viewMode, onAdd }) {
     setModal({ open: false, magazine: null });
   }
 
-  async function handleSubmit(data) {
+  async function handleSubmit(data, keepOpen = false) {
     if (modal.magazine) {
       await updateMagazine(modal.magazine.id, data);
     } else {
       await addMagazine(data);
     }
-    closeModal();
+    if (!keepOpen) closeModal();
   }
 
   async function handleDelete(magazine) {
