@@ -10,8 +10,26 @@ const EMPTY = {
   menge: '',
 };
 
+function isoToDE(iso) {
+  if (!iso) return '';
+  const [y, m, d] = iso.split('-');
+  return d && m && y ? `${d}.${m}.${y}` : iso;
+}
+
+function deToISO(de) {
+  if (!de) return '';
+  const parts = de.split('.');
+  if (parts.length === 3) {
+    const [d, m, y] = parts;
+    return `${y}-${m.padStart(2, '0')}-${d.padStart(2, '0')}`;
+  }
+  return de;
+}
+
 export function MagazineForm({ initial, onSubmit, onSaveAndNext, onCancel }) {
-  const [form, setForm] = useState(initial ?? EMPTY);
+  const [form, setForm] = useState(
+    initial ? { ...initial, erscheinungsdatum: isoToDE(initial.erscheinungsdatum) } : EMPTY
+  );
   const [showDetails, setShowDetails] = useState(Boolean(initial));
   const isAddMode = !initial;
   const titelRef = useRef(null);
@@ -28,6 +46,7 @@ export function MagazineForm({ initial, onSubmit, onSaveAndNext, onCancel }) {
   function parse() {
     return {
       ...form,
+      erscheinungsdatum: deToISO(form.erscheinungsdatum),
       einkaufspreis: form.einkaufspreis !== '' ? parseFloat(form.einkaufspreis) : null,
       verkaufspreis: form.verkaufspreis !== '' ? parseFloat(form.verkaufspreis) : null,
       menge: form.menge !== '' ? parseInt(form.menge, 10) : 0,
@@ -73,9 +92,11 @@ export function MagazineForm({ initial, onSubmit, onSaveAndNext, onCancel }) {
         <label className={labelClass}>Erscheinungsdatum</label>
         <input
           name="erscheinungsdatum"
-          type="date"
+          type="text"
+          inputMode="numeric"
           value={form.erscheinungsdatum}
           onChange={handleChange}
+          placeholder="TT.MM.JJJJ"
           className={inputClass}
         />
       </div>
