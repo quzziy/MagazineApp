@@ -82,7 +82,7 @@ export async function analyzeMagazineCover(imageFile) {
       'anthropic-dangerous-direct-browser-ipc': 'true',
     },
     body: JSON.stringify({
-      model: 'claude-opus-4-8',
+      model: 'claude-sonnet-4-6',
       max_tokens: 1024,
       messages: [
         {

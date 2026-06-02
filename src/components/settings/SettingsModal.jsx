@@ -211,7 +211,7 @@ export function SettingsModal({ open, onClose, onLock }) {
           </div>
 
           <div className="rounded-xl bg-violet-50 p-3 text-xs leading-relaxed text-violet-700">
-            <strong>KI-Analyse:</strong> Claude Opus erkennt das Cover und füllt Titel, Preis,
+            <strong>KI-Analyse:</strong> Claude Sonnet erkennt das Cover und füllt Titel, Preis,
             Beschreibung, Tags und SEO-Felder automatisch aus. Preise immer prüfen.
           </div>
         </div>
