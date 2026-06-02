@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
-import { Download, ChevronDown } from 'lucide-react';
-import { exportToCSV, exportToExcel } from '../../utils/exportUtils';
+import { Download, ChevronDown, ShoppingBag } from 'lucide-react';
+import { exportToCSV, exportToExcel, exportToShopify } from '../../utils/exportUtils';
 
 export function ExportButton({ magazines }) {
   const [open, setOpen] = useState(false);
@@ -26,7 +26,15 @@ export function ExportButton({ magazines }) {
       </button>
 
       {open && (
-        <div className="absolute right-0 top-full z-20 mt-1 w-44 rounded-xl border border-gray-100 bg-white py-1 shadow-lg">
+        <div className="absolute right-0 top-full z-20 mt-1 w-52 rounded-xl border border-gray-100 bg-white py-1 shadow-lg">
+          <button
+            onClick={() => { exportToShopify(magazines); setOpen(false); }}
+            className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm font-medium text-violet-700 hover:bg-violet-50"
+          >
+            <ShoppingBag size={14} />
+            Shopify-Import CSV
+          </button>
+          <div className="mx-3 my-1 border-t border-gray-100" />
           <button
             onClick={() => { exportToCSV(magazines); setOpen(false); }}
             className="w-full px-4 py-2.5 text-left text-sm text-gray-700 hover:bg-gray-50"

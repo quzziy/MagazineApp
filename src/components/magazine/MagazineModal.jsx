@@ -54,6 +54,11 @@ export function MagazineModal({ open, magazine, onClose, onSubmit }) {
         einkaufspreis: magazine.einkaufspreis ?? '',
         verkaufspreis: magazine.verkaufspreis ?? '',
         menge: magazine.menge ?? '',
+        beschreibung: magazine.beschreibung ?? '',
+        zustand: magazine.zustand ?? '',
+        tags: magazine.tags ?? '',
+        seo_titel: magazine.seo_titel ?? '',
+        seo_beschreibung: magazine.seo_beschreibung ?? '',
       }
     : undefined;
 
