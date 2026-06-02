@@ -2,7 +2,9 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [claude/fashion-inventory-app-xTGvP]
+    branches:
+      - claude/fashion-inventory-app-xTGvP
+      - claude/shopify-magazine-auto-catalog-IH5Gv
   workflow_dispatch:
 
 permissions:
