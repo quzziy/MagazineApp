@@ -1,16 +1,22 @@
-# React + Vite
+# Magazin-Inventar
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A browser-based inventory management app for vintage fashion magazines, with AI-powered cover scanning and Shopify export.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **AI Cover Scan** — photograph a magazine cover and Claude automatically fills in title, issue, date, price suggestion, description, tags and SEO fields
+- **Inventory management** — table and card view, search, filtering, CSV/Excel export
+- **Shopify export** — generates a ready-to-import Shopify product CSV with metafields
 
-## React Compiler
+## Setup
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+1. Open the app in your browser
+2. Click ⚙ → enter your [Claude API key](https://console.anthropic.com/settings/keys) and your shop name
+3. Add magazines — use "Cover mit KI scannen" to auto-fill fields from a cover photo
+4. Export → "Shopify-Import CSV" to import products into Shopify
 
-## Expanding the ESLint configuration
+## Tech
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+React · Vite · Dexie (IndexedDB) · Tailwind CSS · Claude API (vision)
+
+All data is stored locally in the browser. The Claude API key is stored only in `localStorage` and never sent anywhere except directly to Anthropic's API.

@@ -12,6 +12,18 @@ export function setApiKey(key) {
   }
 }
 
+export function getShopName() {
+  return localStorage.getItem('shop_name') ?? '';
+}
+
+export function setShopName(name) {
+  if (name) {
+    localStorage.setItem('shop_name', name);
+  } else {
+    localStorage.removeItem('shop_name');
+  }
+}
+
 async function resizeToBase64(file, maxWidth = 1024, quality = 0.85) {
   return new Promise((resolve, reject) => {
     const img = new Image();

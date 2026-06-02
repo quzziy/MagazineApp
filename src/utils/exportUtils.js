@@ -1,4 +1,5 @@
 import * as XLSX from 'xlsx';
+import { getShopName } from '../services/claudeService';
 
 const COLUMNS = [
   { key: 'titel', label: 'Titel' },
@@ -98,7 +99,7 @@ export function exportToShopify(magazines) {
       handle,
       mag.titel ?? '',
       buildDescription(mag),
-      'Vintage Magazine Shop',
+      getShopName() || 'Vintage Shop',
       'Magazin',
       allTags,
       'TRUE',

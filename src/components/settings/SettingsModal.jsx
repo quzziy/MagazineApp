@@ -1,10 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { X, Key, ExternalLink, Eye, EyeOff } from 'lucide-react';
-import { getApiKey, setApiKey } from '../../services/claudeService';
+import { X, Key, Store, ExternalLink, Eye, EyeOff } from 'lucide-react';
+import { getApiKey, setApiKey, getShopName, setShopName } from '../../services/claudeService';
 
 export function SettingsModal({ open, onClose }) {
   const dialogRef = useRef(null);
   const [apiKey, setApiKeyState] = useState('');
+  const [shopName, setShopNameState] = useState('');
   const [showKey, setShowKey] = useState(false);
 
   useEffect(() => {
@@ -12,6 +13,7 @@ export function SettingsModal({ open, onClose }) {
     if (!dialog) return;
     if (open) {
       setApiKeyState(getApiKey());
+      setShopNameState(getShopName());
       setShowKey(false);
       dialog.showModal();
     } else {
@@ -29,6 +31,7 @@ export function SettingsModal({ open, onClose }) {
 
   function handleSave() {
     setApiKey(apiKey.trim());
+    setShopName(shopName.trim());
     onClose();
   }
 
@@ -84,6 +87,24 @@ export function SettingsModal({ open, onClose }) {
                 API-Schlüssel erstellen
                 <ExternalLink size={10} />
               </a>
+            </p>
+          </div>
+
+          <div>
+            <label className="mb-1.5 flex items-center gap-1.5 text-sm font-medium text-gray-700">
+              <Store size={14} />
+              Shop-Name (für Shopify-Export)
+            </label>
+            <input
+              type="text"
+              value={shopName}
+              onChange={(e) => setShopNameState(e.target.value)}
+              placeholder="z.B. Vintage Vogue Shop"
+              className="w-full rounded-lg border border-gray-200 px-3 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-100"
+              autoComplete="off"
+            />
+            <p className="mt-1 text-xs text-gray-500">
+              Wird als Vendor-Feld im Shopify-CSV verwendet.
             </p>
           </div>
 
